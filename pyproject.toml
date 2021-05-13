@@ -9,6 +9,7 @@ python = "^3.8"
 "discord.py" = "^1.7.2"
 flask = "^2.0.0"
 keep-alive = "^0.0.1"
+discord-py-slash-command = "^1.1.2"
 
 [tool.poetry.dev-dependencies]
 
