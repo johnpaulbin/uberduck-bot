@@ -41,6 +41,27 @@ options = [
   }
 ]
 
+announcement = [
+  {
+    "name": "title",
+    "description": "Title of the announcement",
+    "required": True,
+    "type": 3
+  },
+  {
+    "name": "body",
+    "description": "Body of the announcement",
+    "required": True,
+    "type": 3
+  },
+  {
+    "name": "channel",
+    "description": "channel",
+    "required": True,
+    "type": 7
+  }
+]
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -73,6 +94,28 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
   await msg.add_reaction("👍")
   await msg.add_reaction("👎")
   await ctx.send("Sent voice request!")
+
+@slash.slash(name="announce", description="Moderators only", options=announcement, guild_ids = [768215836665446480])
+async def announce(ctx: SlashContext, title = None, body = None, channel = None):
+
+  role = discord.utils.get(ctx.guild.roles, name="Staff")
+
+  if role in ctx.author.roles:
+    pass
+  else:
+    await ctx.send("You aren't apart of staff.")
+
+  channel = client.get_channel(int(channel))
+  embed=discord.Embed(title=title, color=0xfff714)
+  embed.set_author(name="ℹ️ Announcement")
+  if channel != None:
+    embed.set_thumbnail(url=image)
+    embed.add_field(name="-", value=body, inline=True)
+    embed.set_footer(text="ℹ️ Announcement created by staff.")
+    msg = await channel.send(embed=embed)
+    await ctx.send("Sent!")
+  else:
+    ctx.send("Missing channel")
 
 
 keep_alive()
