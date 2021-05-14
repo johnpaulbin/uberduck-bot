@@ -104,15 +104,15 @@ async def announce(ctx: SlashContext, title = None, body = None, channel = None)
     pass
   else:
     await ctx.send("You aren't apart of staff.")
-
-  channel = client.get_channel(int(channel))
+    break
+    
+  #channel = client.get_channel(channel)
   embed=discord.Embed(title=title, color=0xfff714)
   embed.set_author(name="ℹ️ Announcement")
   if channel != None:
-    embed.set_thumbnail(url=image)
     embed.add_field(name="-", value=body, inline=True)
     embed.set_footer(text="ℹ️ Announcement created by staff.")
-    msg = await channel.send(embed=embed)
+    await channel.send(embed=embed)
     await ctx.send("Sent!")
   else:
     ctx.send("Missing channel")
