@@ -80,7 +80,7 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     pass
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
-
+    break
   channel = client.get_channel(842496586361339914)
   embed=discord.Embed(title=character, color=0xfff714)
   embed.set_author(name="👋 Suggest a voice with /voicesuggest")
@@ -105,7 +105,7 @@ async def announce(ctx: SlashContext, title = None, body = None, channel = None)
   else:
     await ctx.send("You aren't apart of staff.")
     break
-    
+
   #channel = client.get_channel(channel)
   embed=discord.Embed(title=title, color=0xfff714)
   embed.set_author(name="ℹ️ Announcement")
