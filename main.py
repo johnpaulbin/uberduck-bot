@@ -77,23 +77,21 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
   role = discord.utils.get(ctx.guild.roles, name="Agreed")
 
   if role in ctx.author.roles:
-    pass
+    channel = client.get_channel(842496586361339914)
+    embed=discord.Embed(title=character, color=0xfff714)
+    embed.set_author(name="👋 Suggest a voice with /voicesuggest")
+    if image != None:
+      embed.set_thumbnail(url=image)
+    embed.add_field(name="Source", value=source, inline=True)
+    embed.add_field(name="Voice Clip", value=clip, inline=True)
+    embed.add_field(name="Suggested by:", value=ctx.author.mention, inline=False)
+    embed.set_footer(text="👋 Thumbs up or Thumbs down this message to vote!")
+    msg = await channel.send(embed=embed)
+    await msg.add_reaction("👍")
+    await msg.add_reaction("👎")
+    await ctx.send("Sent voice request!")
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
-    break
-  channel = client.get_channel(842496586361339914)
-  embed=discord.Embed(title=character, color=0xfff714)
-  embed.set_author(name="👋 Suggest a voice with /voicesuggest")
-  if image != None:
-    embed.set_thumbnail(url=image)
-  embed.add_field(name="Source", value=source, inline=True)
-  embed.add_field(name="Voice Clip", value=clip, inline=True)
-  embed.add_field(name="Suggested by:", value=ctx.author.mention, inline=False)
-  embed.set_footer(text="👋 Thumbs up or Thumbs down this message to vote!")
-  msg = await channel.send(embed=embed)
-  await msg.add_reaction("👍")
-  await msg.add_reaction("👎")
-  await ctx.send("Sent voice request!")
 
 @slash.slash(name="announce", description="Moderators only", options=announcement, guild_ids = [768215836665446480])
 async def announce(ctx: SlashContext, title = None, body = None, channel = None):
@@ -101,21 +99,22 @@ async def announce(ctx: SlashContext, title = None, body = None, channel = None)
   role = discord.utils.get(ctx.guild.roles, name="Staff")
 
   if role in ctx.author.roles:
-    pass
+
+
+
+    #channel = client.get_channel(channel)
+    embed=discord.Embed(title=title, color=0xfff714)
+    embed.set_author(name="ℹ️ Announcement")
+    if channel != None:
+      embed.add_field(name="-", value=body, inline=True)
+      embed.set_footer(text="ℹ️ Announcement created by staff.")
+      await channel.send(embed=embed)
+      await ctx.send("Sent!")
+    else:
+      ctx.send("Missing channel")
   else:
     await ctx.send("You aren't apart of staff.")
-    break
 
-  #channel = client.get_channel(channel)
-  embed=discord.Embed(title=title, color=0xfff714)
-  embed.set_author(name="ℹ️ Announcement")
-  if channel != None:
-    embed.add_field(name="-", value=body, inline=True)
-    embed.set_footer(text="ℹ️ Announcement created by staff.")
-    await channel.send(embed=embed)
-    await ctx.send("Sent!")
-  else:
-    ctx.send("Missing channel")
 
 
 keep_alive()
