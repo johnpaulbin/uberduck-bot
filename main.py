@@ -89,7 +89,7 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     msg = await channel.send(embed=embed)
     await msg.add_reaction("👍")
     await msg.add_reaction("👎")
-    #await msg.add_reaction("<:patreon:843022446675886110>")
+    await msg.add_reaction("<:patreon:843022446675886110>")
     await ctx.send("Sent voice request!")
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
