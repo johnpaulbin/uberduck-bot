@@ -121,7 +121,7 @@ async def on_raw_reaction_add(payload):
 
   channel = client.get_channel(payload.channel_id)
   message = await channel.fetch_message(payload.message_id)
-  user = client.get_member(payload.user_id)
+  user = message.guild.get_member(payload.user_id)
 
 
   patreon = client.get_emoji(843022446675886110)
