@@ -117,24 +117,21 @@ async def announce(ctx: SlashContext, title = None, body = None, channel = None)
     await ctx.send("You aren't apart of staff.")
 
 @client.event
-async def on_raw_reaction_add(payload):
+async def on_raw_reaction_add(self, reaction: discord.Reaction, user: discord.Member):
 
-  role = discord.utils.get(msg.guild.roles, name="Supporter")
+
 
   patreon = client.get_emoji(843022446675886110)
 
-  message = await client.get_channel(payload.channel_id).fetch_message(payload.message_id)
-  reaction = discord.utils.get(message.reactions, emoji=patreon)
-  user = payload.member
-  
+  role = discord.utils.get(reaction.message.guild.roles, name="Supporter")
 
-  if message.channel == client.get_channel(842496586361339914):
+  if reaction.message.channel == client.get_channel(842496586361339914):
     if user != client.user:
       if reaction == patreon:
         if role in user.roles:
           pass
         else:
-          await message.remove_reaction(input_emoji, user)
+          await message.remove_reaction(patreon, user)
           await user.send("You need to be a member of the patreon to do this!")
 
 keep_alive()
