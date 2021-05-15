@@ -8,7 +8,7 @@ from web import keep_alive
 token = os.environ['discord']
 activity = discord.Activity(name='over you!', type=discord.ActivityType.watching)
 
-status = itertools.cycle(['uberduck.ai','voice synthesizers'])
+status = itertools.cycle(['uberduck.ai','with voice synthesizers'])
 
 client = commands.Bot(command_prefix="!", intents=discord.Intents.all(), activity=activity)
 slash = SlashCommand(client, sync_commands = True)
@@ -117,21 +117,24 @@ async def announce(ctx: SlashContext, title = None, body = None, channel = None)
     await ctx.send("You aren't apart of staff.")
 
 @client.event
-async def on_raw_reaction_add(self, reaction: discord.Reaction, user: discord.Member):
+async def on_raw_reaction_add(payload):
 
+  channel = client.get_channel(payload.channel_id)
+  message = await channel.fetch_message(payload.message_id)
+  user = client.get_member(payload.user_id)
 
 
   patreon = client.get_emoji(843022446675886110)
 
-  role = discord.utils.get(reaction.message.guild.roles, name="Supporter")
+  role = discord.utils.get(message.guild.roles, name="Supporter")
 
-  if reaction.message.channel == client.get_channel(842496586361339914):
+  if message.channel == client.get_channel(842496586361339914):
     if user != client.user:
-      if reaction == patreon:
+      if payload.emoji == patreon:
         if role in user.roles:
           pass
         else:
-          await message.remove_reaction(patreon, user)
+          await message.remove_reaction(payload.emoji, user)
           await user.send("You need to be a member of the patreon to do this!")
 
 keep_alive()
