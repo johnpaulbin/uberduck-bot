@@ -124,12 +124,12 @@ async def on_reaction_add(reaction, user):
   emoji = client.get_emoji(843022446675886110)
 
   if user != client.user:
-    if str(reaction.emoji) == emoji:
+    if reaction.emoji == emoji:
       if role in user.roles:
         pass
       else:
-        reaction.message.remove_reaction(emoji, user)
-        user.send("You need to be a member of the patreon to do this!")
+        await reaction.message.remove_reaction(emoji, user)
+        await user.send("You need to be a member of the patreon to do this!")
 
 keep_alive()
 
