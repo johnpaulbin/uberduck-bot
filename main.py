@@ -89,6 +89,7 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     msg = await channel.send(embed=embed)
     await msg.add_reaction("👍")
     await msg.add_reaction("👎")
+    await msg.add_reaction("<:patreon:843022446675886110>")
     await ctx.send("Sent voice request!")
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
@@ -115,7 +116,20 @@ async def announce(ctx: SlashContext, title = None, body = None, channel = None)
   else:
     await ctx.send("You aren't apart of staff.")
 
+@client.event
+async def on_reaction_add(reaction, user):
 
+  role = discord.utils.get(reaction.message.guild.roles, name="Supporter")
+
+  emoji = client.get_emoji(843022446675886110)
+
+  if user != client.user:
+    if str(reaction.emoji) == emoji:
+      if role in user.roles:
+        pass
+      else:
+        reaction.message.remove_reaction(emoji, user)
+        user.send("You need to be a member of the patreon to do this!")
 
 keep_alive()
 
