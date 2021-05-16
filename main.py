@@ -76,9 +76,16 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
 
   role = discord.utils.get(ctx.guild.roles, name="Agreed")
 
+  sup = discord.utils.get(ctx.guild.roles, name="Supporter")
+
+  if sup in ctx.author.roles:
+    color = 0xFF00E8
+  else:
+    color = 0xfff714
+
   if role in ctx.author.roles:
     channel = client.get_channel(842496586361339914)
-    embed=discord.Embed(title=character, color=0xfff714)
+    embed=discord.Embed(title=character, color=color)
     embed.set_author(name="👋 Suggest a voice with /voicesuggest")
     if image != None:
       embed.set_thumbnail(url=image)
