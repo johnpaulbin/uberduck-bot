@@ -194,21 +194,21 @@ async def changeStatus(ctx: SlashContext, api = None, website = None):
     if api == 3:
       api = "🔴 Offline"
       color = 0xC30000
-      statusChannel.edit(name = "🔴status")
+      await statusChannel.edit(name = "🔴status")
     elif api == 2:
       api = "🟡 Slow"
       color = 0xF1FF00
-      statusChannel.edit(name = "🟡status")
+      await statusChannel.edit(name = "🟡status")
     else:
       api = "🟢 Healthy"
-      statusChannel.edit(name = "🟢status")
+      await statusChannel.edit(name = "🟢status")
 
     if website == 2:
       website = "🔴 Offline"
     else:
       website = "🟢 Online"
 
-
+    await statusChannel.purge()
 
     embed=discord.Embed(title="Website / API status", color=color)
 
