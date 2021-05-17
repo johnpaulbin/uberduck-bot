@@ -2,6 +2,7 @@ import os
 import discord
 from discord.ext import commands, tasks
 from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
+
 import itertools
 from web import keep_alive
 
@@ -41,6 +42,27 @@ options = [
   }
 ]
 
+options2 = [
+  {
+    "name": "character",
+    "description": "The name of the person behind the voice.",
+    "required": True,
+    "type": 3
+  },
+  {
+    "name": "url",
+    "description": "The URL you are hosting your dataset on. Example: Google drive, Mega.nz, or Dropbox.",
+    "required": True,
+    "type": 3
+  },
+  {
+    "name": "image",
+    "description": "OPTIONAL Image url of the subject.",
+    "required": False,
+    "type": 3
+  }
+]
+
 announcement = [
   {
     "name": "title",
@@ -71,8 +93,22 @@ async def on_ready():
 async def change_status():
   await client.change_presence(activity=discord.Game(next(status)))
 
+@client.event
+async def on_member_join(member):
+    await member.send('👋 **Welcome!**')
+    await member.send("""This is uberduck.ai's official discord community, here you can expect to talk about this project, request new voices onto the site, and maybe even learn a few things!
+    **FAQ**
+    You can view our most asked questions about the website / project in the #faq channel in our server.
+    """)
+
+@client.event
+async def on_message(message):
+    mention = f'<@!{client.user.id}>'
+    if mention in message.content:
+        await message.channel.send("Uberduck agent, reporting for duty!")
+
 @slash.slash(name="voicesuggest", description="Suggest a voice to be added or to be made.", options=options, guild_ids = [768215836665446480])
-async def voicesuggest(ctx: SlashContext, character = None, source = None, image = None, clip = None):
+async def voicesuggest(ctx: SlashContext, character = None, source = None, image = None, clip = "(none provided)"):
 
   role = discord.utils.get(ctx.guild.roles, name="Agreed")
 
@@ -80,6 +116,8 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
 
   if sup in ctx.author.roles:
     color = 0xFF00E8
+  elif ctx.author in ctx.guild.premium_subscribers:
+    color = 0x00FFF2
   else:
     color = 0xfff714
 
@@ -100,6 +138,34 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     await ctx.send("Sent voice request!")
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
+
+@slash.slash(name="dataset_request", description="Request that your dataset be trained.", options=options2, guild_ids = [768215836665446480])
+async def dataset_request(ctx: SlashContext, character = None, url = None, image = None):
+
+  role = discord.utils.get(ctx.guild.roles, name="Agreed")
+
+  sup = discord.utils.get(ctx.guild.roles, name="Supporter")
+
+  if role in ctx.author.roles:
+    channel = client.get_channel(843619158834020393)
+    embed=discord.Embed(title=character, color=0x808080)
+    embed.set_author(name="👋 Request your dataset with /dataset_request. Click the green checkmark to notify you are training on the dataset!")
+    if image != None:
+      embed.set_thumbnail(url=image)
+    embed.add_field(name="URL", value=url, inline=True)
+    embed.add_field(name="Requested by:", value=ctx.author.mention, inline=True)
+    embed.add_field(name="Worked on by:", value="No one yet.", inline=True)
+    msg = await channel.send(embed=embed)
+    await msg.add_reaction("✅")
+    await ctx.send("Sent training request!")
+  else:
+    await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
+
+
+@slash.slash(name="why_isnt_the_site_working", description="run this command to find out", guild_ids = [768215836665446480])
+async def why_isnt_the_site_working(ctx: SlashContext):
+  await ctx.send(ctx.author.mention + " Look near the bottom of: <#841422801965416538>")
+
 
 @slash.slash(name="announce", description="Moderators only", options=announcement, guild_ids = [768215836665446480])
 async def announce(ctx: SlashContext, title = None, body = None, channel = None):
@@ -143,6 +209,42 @@ async def on_raw_reaction_add(payload):
         else:
           await message.remove_reaction(payload.emoji, user)
           await user.send("You need to be a member of the patreon to do this!")
+  
+  elif message.channel == client.get_channel(843619158834020393):
+    if user != client.user:
+
+      embed_dict = message.embeds[0]
+
+      for i, item in enumerate(embed_dict.fields):
+
+        if i == 2:
+          print(item)
+          if user.mention == item.value:
+            
+            await user.send("You have stopped work on training.")
+            embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value="No one yet.")
+
+            embed_dict.color = 0x808080
+
+            await message.edit(embed=embed_dict)
+            await message.remove_reaction(payload.emoji, user)
+
+            break
+
+
+          else:
+
+            embed_dict.color = 0x00FF00
+
+            embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value=user.mention)
+
+            await user.send("You have chosen that you are training the dataset! If this is a mistake, uncheck the checkmark!")
+
+            await message.edit(embed=embed_dict)
+            await message.remove_reaction(payload.emoji, user)
+
+            break
+
 
 keep_alive()
 
