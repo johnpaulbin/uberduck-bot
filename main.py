@@ -107,15 +107,15 @@ async def on_ready():
 @tasks.loop(seconds=500)
 async def change_status():
   await client.change_presence(activity=discord.Game(next(status)))
-
+""""
 @client.event
 async def on_member_join(member):
     await member.send('👋 **Welcome!**')
-    await member.send("""This is uberduck.ai's official discord community, here you can expect to talk about this project, request new voices onto the site, and maybe even learn a few things!
+    await member.send(\"\"\"This is uberduck.ai's official discord community, here you can expect to talk about this project, request new voices onto the site, and maybe even learn a few things!
 **FAQ**
 > You can view our most asked questions about the website / project in the #faq channel in our server.
-    """)
-
+    \"\"\")
+"""
 @client.event
 async def on_message(message):
     mention = f'<@!{client.user.id}>'
