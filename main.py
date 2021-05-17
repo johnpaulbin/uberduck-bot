@@ -84,12 +84,27 @@ announcement = [
   }
 ]
 
+statusOptions = [
+  {
+    "name": "api",
+    "description": "1 = GREEN, 2 = YELLOW, 3 = RED (offline)",
+    "required": True,
+    "type": 4
+  },
+  {
+    "name": "website",
+    "description": "1 = GREEN, 2 = RED (offline)",
+    "required": True,
+    "type": 4
+  }
+]
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     change_status.start()
     
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=500)
 async def change_status():
   await client.change_presence(activity=discord.Game(next(status)))
 
@@ -97,8 +112,8 @@ async def change_status():
 async def on_member_join(member):
     await member.send('👋 **Welcome!**')
     await member.send("""This is uberduck.ai's official discord community, here you can expect to talk about this project, request new voices onto the site, and maybe even learn a few things!
-    **FAQ**
-    You can view our most asked questions about the website / project in the #faq channel in our server.
+**FAQ**
+> You can view our most asked questions about the website / project in the #faq channel in our server.
     """)
 
 @client.event
@@ -164,6 +179,54 @@ async def dataset_request(ctx: SlashContext, character = None, url = None, image
 async def why_isnt_the_site_working(ctx: SlashContext):
   await ctx.send(ctx.author.mention + " Look near the bottom of: <#841422801965416538>")
 
+
+@slash.slash(name="status", description="Moderators only!", guild_ids = [768215836665446480], options=statusOptions)
+async def changeStatus(ctx: SlashContext, api = None, website = None):
+
+  role = discord.utils.get(ctx.guild.roles, name="Staff")
+
+  if role in ctx.author.roles:
+
+    color = 0x45FF00
+
+    statusChannel = client.get_channel(842838618511114280)
+
+    if api == 3:
+      api = "🔴 Offline"
+      color = 0xC30000
+      statusChannel.edit(name = "🔴status")
+    elif api == 2:
+      api = "🟡 Slow"
+      color = 0xF1FF00
+      statusChannel.edit(name = "🟡status")
+    else:
+      api = "🟢 Healthy"
+      statusChannel.edit(name = "🟢status")
+
+    if website == 2:
+      website = "🔴 Offline"
+    else:
+      website = "🟢 Online"
+
+
+
+    embed=discord.Embed(title="Website / API status", color=color)
+
+    embed.set_author(name="ℹ️ Status")
+
+    embed.add_field(name="API", value=api, inline=True)
+
+    embed.add_field(name="Website", value=website, inline=True)
+
+    embed.set_footer(text="ℹ️ Status updated by staff.")
+
+    await statusChannel.send(embed=embed)
+
+    await ctx.send("Updated!")
+
+  else:
+
+    await ctx.send("You aren't apart of staff.")
 
 @slash.slash(name="announce", description="Moderators only", options=announcement, guild_ids = [768215836665446480])
 async def announce(ctx: SlashContext, title = None, body = None, channel = None):
