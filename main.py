@@ -144,8 +144,6 @@ async def dataset_request(ctx: SlashContext, character = None, url = None, image
 
   role = discord.utils.get(ctx.guild.roles, name="Agreed")
 
-  sup = discord.utils.get(ctx.guild.roles, name="Supporter")
-
   if role in ctx.author.roles:
     channel = client.get_channel(843619158834020393)
     embed=discord.Embed(title=character, color=0x808080)
