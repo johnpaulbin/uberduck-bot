@@ -104,7 +104,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     change_status.start()
     
-@tasks.loop(seconds=500)
+@tasks.loop(seconds=300)
 async def change_status():
   await client.change_presence(activity=discord.Game(next(status)))
 """"
@@ -123,7 +123,7 @@ async def on_message(message):
         await message.channel.send("Uberduck agent, reporting for duty!")
 
 @slash.slash(name="voicesuggest", description="Suggest a voice to be added or to be made.", options=options, guild_ids = [768215836665446480])
-async def voicesuggest(ctx: SlashContext, character = None, source = None, image = None, clip = "(none provided)"):
+async def voicesuggest(ctx: SlashContext, character = None, source = None, image = "https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596", clip = "(none provided)"):
 
   role = discord.utils.get(ctx.guild.roles, name="Agreed")
 
@@ -140,8 +140,7 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     channel = client.get_channel(842496586361339914)
     embed=discord.Embed(title=character, color=color)
     embed.set_author(name="👋 Suggest a voice with /voicesuggest")
-    if image != None:
-      embed.set_thumbnail(url=image)
+    embed.set_thumbnail(url=image)
     embed.add_field(name="Source", value=source, inline=True)
     embed.add_field(name="Voice Clip", value=clip, inline=True)
     embed.add_field(name="Suggested by:", value=ctx.author.mention, inline=False)
@@ -155,7 +154,7 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
 
 @slash.slash(name="dataset_request", description="Request that your dataset be trained.", options=options2, guild_ids = [768215836665446480])
-async def dataset_request(ctx: SlashContext, character = None, url = None, image = None):
+async def dataset_request(ctx: SlashContext, character = None, url = None, image = "https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596"):
 
   role = discord.utils.get(ctx.guild.roles, name="Agreed")
 
@@ -282,7 +281,7 @@ async def on_raw_reaction_add(payload):
           print(item)
           if user.mention == item.value:
             
-            await user.send("You have stopped work on training.")
+            #await user.send("You have stopped work on training.")
             embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value="No one yet.")
 
             embed_dict.color = 0x808080
@@ -299,7 +298,7 @@ async def on_raw_reaction_add(payload):
 
             embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value=user.mention)
 
-            await user.send("You have chosen that you are training the dataset! If this is a mistake, uncheck the checkmark!")
+            #await user.send("You have chosen that you are training the dataset! If this is a mistake, uncheck the checkmark!")
 
             await message.edit(embed=embed_dict)
             await message.remove_reaction(payload.emoji, user)
