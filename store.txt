@@ -246,6 +246,7 @@
 [The Simpsons] Nelson Muntz (by JacobLenstar)
 [Donkey Kong 64] DK Rap (by BibbyBob)
 [The Fairly OddParents] Timmy Turner (by Anonymous)
+[Half-Life 2] Dr. Wallace Breen (by zman991)
 [Ratchet & Clank] Clank (by HoodyP)
 [Kid Icarus] Pit (by Haycoat)
 [Ring Fit Adventure] Male Ring (by adam-is-cool-and-stuff)
@@ -272,3 +273,4 @@
 [Madagascar] Private (by Carl Da KWASON)
 [Sesame Street] Telly (by Jeremythepeanutsguy)
 [Five Nights at Freddy's] Handunit (by Bibbybob)
+[The Simpsons] Ned Flanders (by JacobLenstar)

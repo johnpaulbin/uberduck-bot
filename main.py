@@ -230,15 +230,14 @@ async def voice_update(ctx: SlashContext, channel = None):
           fl.write(line)
 
       for char in change:
-        sendMsg.append(char + "\n")
+        sendMsg.append("+ "+ char + "\n")
         print("+ " + char)
 
-      channel = client.get_channel(channel)
       embed=discord.Embed(title="The following changes were made:", color=0xFFFF00)
       embed.set_author(name="👋 Voice updates!")
       embed.set_thumbnail(url="https://uberduck.ai/_next/image?url=%2Fuberduck.jpg&w=384&q=75")
-      embed.add_field(name="-", value=''.join(sendMsg), inline=True)
-      msg = await channel.send(embed=embed)
+      embed.add_field(name="-", value='```diff\n'.join(sendMsg) + "```", inline=True)
+      await channel.send(embed=embed)
       await ctx.send("Sent the update!")
   else:
     await ctx.send("You arent staff.")
