@@ -2,7 +2,8 @@ import os
 import discord
 from discord.ext import commands, tasks
 from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
-
+import requests
+import json
 import itertools
 from web import keep_alive
 
@@ -99,6 +100,15 @@ statusOptions = [
   }
 ]
 
+voiceOptions = [
+  {
+    "name": "channel",
+    "description": "The channel to send the embed to.",
+    "required": True,
+    "type": 7
+  }
+]
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -173,6 +183,65 @@ async def dataset_request(ctx: SlashContext, character = None, url = None, image
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
 
+@slash.slash(name="voice_update", description="Staff only! It makes an embed onto the channel.", options=voiceOptions, guild_ids = [768215836665446480])
+async def voice_update(ctx: SlashContext, channel = None):
+
+  role = discord.utils.get(ctx.guild.roles, name="Staff")
+
+  if role in ctx.author.roles:
+
+    store = open("store.txt", "r+")
+    update = open("update.txt", "r+")
+    response = requests.get("https://api.uberduck.ai/voices")
+    json_data = json.loads(response.text)
+    update.truncate(0)
+
+    with open("update.txt", "a") as fl:
+      for name in json_data:
+        fl.write(name["display_name"] + "\n")
+
+    change = []
+
+    if os.stat("store.txt").st_size == 0:
+      print("Empty, storing instead")
+      with open("store.txt", "a") as fl:
+        for line in update:
+          fl.write(line)
+
+    else:
+      count = 0
+      updatelines = update.read().splitlines()
+      storelines = store.read().splitlines()
+      for line in updatelines:
+        if line not in storelines:
+          print("Different!")
+          change.append(line)
+        count += 1
+
+    if change == []:
+      await ctx.send("It appears no new voices has been added onto the site.")
+
+    else:
+      sendMsg = []
+
+      store.truncate(0)
+      with open("store.txt", "a") as fl:
+        for line in update:
+          fl.write(line)
+
+      for char in change:
+        sendMsg.append(char + "\n")
+        print("+ " + char)
+
+      channel = client.get_channel(channel)
+      embed=discord.Embed(title="The following changes were made:", color=0xFFFF00)
+      embed.set_author(name="👋 Voice updates!")
+      embed.set_thumbnail(url="https://uberduck.ai/_next/image?url=%2Fuberduck.jpg&w=384&q=75")
+      embed.add_field(name="-", value=''.join(sendMsg), inline=True)
+      msg = await channel.send(embed=embed)
+      await ctx.send("Sent the update!")
+  else:
+    await ctx.send("You arent staff.")
 
 @slash.slash(name="why_isnt_the_site_working", description="run this command to find out", guild_ids = [768215836665446480])
 async def why_isnt_the_site_working(ctx: SlashContext):
@@ -268,7 +337,7 @@ async def on_raw_reaction_add(payload):
           pass
         else:
           await message.remove_reaction(payload.emoji, user)
-          await user.send("You need to be a member of the patreon to do this!")
+          #await user.send("You need to be a member of the patreon to do this!")
   
   elif message.channel == client.get_channel(843619158834020393):
     if user != client.user:
