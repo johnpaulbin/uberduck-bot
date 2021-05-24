@@ -150,7 +150,11 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
     channel = client.get_channel(842496586361339914)
     embed=discord.Embed(title=character, color=color)
     embed.set_author(name="👋 Suggest a voice with /voicesuggest")
-    embed.set_thumbnail(url=image)
+    try:
+      embed.set_thumbnail(url=image)
+    except:
+      ctx.send("You inputted an invalid url (for the image) Using default instead.")
+      embed.set_thumbnail(url="https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596")
     embed.add_field(name="Source", value=source, inline=True)
     embed.add_field(name="Voice Clip", value=clip, inline=True)
     embed.add_field(name="Suggested by:", value=ctx.author.mention, inline=False)
