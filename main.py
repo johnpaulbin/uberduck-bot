@@ -226,7 +226,7 @@ async def voice_update(ctx: SlashContext, channel = None):
       await ctx.send("It appears no new voices has been added onto the site.")
 
     else:
-      sendMsg = []
+      sendMsg = ["```diff\n",]
 
       store.truncate(0)
       with open("store.txt", "a") as fl:
@@ -236,11 +236,12 @@ async def voice_update(ctx: SlashContext, channel = None):
       for char in change:
         sendMsg.append("+ "+ char + "\n")
         print("+ " + char)
+      sendMsg.append("```")
 
       embed=discord.Embed(title="The following changes were made:", color=0xFFFF00)
       embed.set_author(name="👋 Voice updates!")
       embed.set_thumbnail(url="https://uberduck.ai/_next/image?url=%2Fuberduck.jpg&w=384&q=75")
-      embed.add_field(name="-", value='```diff\n'.join(sendMsg) + "```", inline=True)
+      embed.add_field(name="-", value=''.join(sendMsg), inline=True)
       await channel.send(embed=embed)
       await ctx.send("Sent the update!")
   else:
