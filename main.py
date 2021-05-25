@@ -113,6 +113,7 @@ voiceOptions = [
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     change_status.start()
+
     
 @tasks.loop(seconds=300)
 async def change_status():
@@ -131,6 +132,7 @@ async def on_message(message):
     mention = f'<@!{client.user.id}>'
     if mention in message.content:
         await message.channel.send("Uberduck agent, reporting for duty!")
+
 
 @slash.slash(name="voicesuggest", description="Suggest a voice to be added or to be made.", options=options, guild_ids = [768215836665446480])
 async def voicesuggest(ctx: SlashContext, character = None, source = None, image = "https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596", clip = "(none provided)"):
@@ -211,7 +213,6 @@ async def voice_update(ctx: SlashContext, channel = None):
       with open("store.txt", "a") as fl:
         for line in update:
           fl.write(line)
-
     else:
       count = 0
       updatelines = update.read().splitlines()
@@ -226,7 +227,7 @@ async def voice_update(ctx: SlashContext, channel = None):
       await ctx.send("It appears no new voices has been added onto the site.")
 
     else:
-      sendMsg = ["```diff\n",]
+      
 
       store.truncate(0)
       with open("store.txt", "a") as fl:
@@ -234,15 +235,27 @@ async def voice_update(ctx: SlashContext, channel = None):
           fl.write(line)
 
       for char in change:
-        sendMsg.append("+ "+ char + "\n")
         print("+ " + char)
-      sendMsg.append("```")
+      
 
-      embed=discord.Embed(title="The following changes were made:", color=0xFFFF00)
-      embed.set_author(name="👋 Voice updates!")
-      embed.set_thumbnail(url="https://uberduck.ai/_next/image?url=%2Fuberduck.jpg&w=384&q=75")
-      embed.add_field(name="-", value=''.join(sendMsg), inline=True)
-      await channel.send(embed=embed)
+      final = [change[x:x+5] for x in range(0, len(change),5)]
+
+      for i in final:
+
+        sendMsg = ["```diff\n",]
+
+        for chars in i:
+          #print (chars)
+          sendMsg.append("+ "+ char + "\n")
+
+        sendMsg.append("```")
+
+        embed=discord.Embed(title="The following changes were made:", color=0xFFFF00)
+        embed.set_author(name="👋 Voice updates!")
+        embed.set_thumbnail(url="https://uberduck.ai/_next/image?url=%2Fuberduck.jpg&w=384&q=75")
+        embed.add_field(name="-", value=''.join(sendMsg), inline=True)
+        await channel.send(embed=embed)
+
       await ctx.send("Sent the update!")
   else:
     await ctx.send("You arent staff.")
