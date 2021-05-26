@@ -230,7 +230,8 @@ async def voice_update(ctx: SlashContext, channel = None):
       
       with open("store.txt", "a") as fl:
         for change in update:
-          fl.write(line)
+          fl.write(change)
+        fl.close()
 
       for char in change:
         print("+ " + char)
