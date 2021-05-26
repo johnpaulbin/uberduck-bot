@@ -224,8 +224,8 @@ async def voice_update(ctx: SlashContext, channel = None):
           change.append(line)
           
           with open("store.txt", "a") as fl:
-            for change in update:
-              fl.write(change)
+            for line in update:
+              fl.write(line)
 
         count += 1
 

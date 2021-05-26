@@ -142,12 +142,12 @@
 [Ed, Edd n Eddy] Eddy (by JacobLenstar)
 [Ratchet & Clank] Ratchet (by HoodyP)
 [Big & Small] Big (by pi and WaffleBowl)
-[The Super Mario Bros. Super Show] Mario
 [Ninjala] Van (by VladimirHeavy)
 [LazyTown] Robbie Rotten (by Kosmikist)
 [Sesame Street] Grover (by Jeremythepeanutsguy)
 [The Simpsons] Barney Gumble (by JacobLenstar)
 [BFB] Nine
+[The Super Mario Bros. Super Show] Mario (by JabberHawk and SquareHeadedAs1)
 [Animaniacs] Yakko Warner (by Anonymous)
 [SpongeBob SquarePants] Plankton (by JacobLenstar)
 [Legend of Zelda] CD-I: Zelda (by SharpeFan1020)
@@ -172,7 +172,6 @@
 [The Loud House] Lisa Loud (by SageAwesomeStarAniPicScope)
 [The Loud House] Lincoln Loud (by SageAwesomeStarAniPicScope)
 [Huniepop] Kyu Sugardust (by TheUndeadQueen)
-[Animaniacs] Wakko Warner (by Anonymous)
 [Sonic The Hedgehog] Amy Rose (by SonicToon21)
 [YouTubers] TheGamerFromMars (by JacobLenstar)
 [Spyro 2: Ripto's Rage] Elora (by JacobLenstar)
@@ -308,12 +307,11 @@
 [Psychonauts] Razputin Aquato (by Datenegassie)
 [Darkest Dungeon] The Ancestor
 [Portal] Cave Johnson
-[Mao Mao: Heroes of Pure Heart] Mao Mao (by shoopdahoop22, IBob012 and EndersVoid)
+[Wii Sports] Announcer (by BibbyBob and Wipeoutjack7)
 [YouTubers] MatPat from The Game Theorists (by Sierra Ray)
 [Rec Room] Coach (by Scramble and JacobLenstar)
 [OK K.O.] Rad (by TheUndeadQueen)
 [Half-Life 2] Dr. Judith Mossman (by zman991)
-[Wii Sports] Announcer (by BibbyBob and Wipejackout17)
 [Dark Messiah of Might & Magic] Orc A (by AI Clone Voices)
 [Trespasser: The Lost World] John Parker Hammond
 [Musicians] Lemon Demon (Neil Cicierega) (by Haycoat)
@@ -343,3 +341,12 @@
 [Conroy Cat] Conroy Cat (by iamitz1)
 [Rappers] Eminem (Freestyle) (by iamitz1)
 [iCarly] Freddie Benson (by BibbyBob)
+[Toy Story] Woody (by Waltman13)
+[Mao Mao: Heroes of Pure Heart] Mao Mao (by shoopdahoop22, IBob012 and EndersVoid)
+[The Land Before Time] Littlefoot (by Jeremythepeanutsguy)
+[Animaniacs] Wakko Warner (by SonicToon21)
+[Sonic X] Lindsey Thorndyke (by SonicToon21)
+[Danganronpa] Gundham Tanaka (by PerroArg)
+[Sonic's Schoolhouse] Sonic (by JacobLenstar)
+[Zootopia] Nick Wilde
+[Disney] Minnie Mouse (by Perfectpitcher88)
