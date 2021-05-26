@@ -142,6 +142,7 @@
 [Ed, Edd n Eddy] Eddy (by JacobLenstar)
 [Ratchet & Clank] Ratchet (by HoodyP)
 [Big & Small] Big (by pi and WaffleBowl)
+[The Super Mario Bros. Super Show] Mario
 [Ninjala] Van (by VladimirHeavy)
 [LazyTown] Robbie Rotten (by Kosmikist)
 [Sesame Street] Grover (by Jeremythepeanutsguy)
@@ -198,6 +199,7 @@
 [Green Eggs & Ham] Guy (by Waltman13)
 [YouTubers] Yahtzee Croshaw (by Toasty)
 [Fallout] Nick Valentine (by PerroArg)
+[Family Guy] Meg Griffin (by SonicToon21)
 [BFB] Four (by LindosoLord)
 [Friday Night Funkin'] Pump (by SageAwesomeStarAniPicScope)
 [Steven Universe] Steven (by BibbyBob)
@@ -212,6 +214,8 @@
 [OK K.O.] KO (by TheUndeadQueen)
 [Barney] BJ
 [Rappers] MF Doom (by angelfacepeanut)
+[Total Drama] Dawn
+[Helluva Boss] Blitz
 [Pepper Ann] Pepper Ann (by Jeremythepeanutsguy)
 [The Simpsons] Homer Simpson (by JacobLenstar)
 [Toy Story] Hamm (by JacobLenstar)
@@ -269,6 +273,7 @@
 [Madagascar] Private (by Carl Da KWASON)
 [Sesame Street] Telly (by Jeremythepeanutsguy)
 [Five Nights at Freddy's] Handunit (by Bibbybob)
+[Trails of Cold Steel] Musse Egret
 [The Simpsons] Ned Flanders (by JacobLenstar)
 [Despicable Me] Gru (by BibbyBob)
 [Looney Tunes] Foghorn Leghorn (by BibbyBob)
@@ -334,3 +339,7 @@
 [Mao Mao: Heroes of Pure Heart] Adorabat (by shoopdahoop22 and EndersVoid)
 [Invincible] Omni-Man (by Kosmikist)
 [Musicians] Dave Gahan (Depeche Mode) (by Majora101)
+[Bully] Jimmy Hopkins (by doop)
+[Conroy Cat] Conroy Cat (by iamitz1)
+[Rappers] Eminem (Freestyle) (by iamitz1)
+[iCarly] Freddie Benson (by BibbyBob)

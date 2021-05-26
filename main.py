@@ -240,7 +240,7 @@ async def voice_update(ctx: SlashContext, channel = None):
 
       for i in final:
         print (i)
-        sendMsg = ["```diff\n",]
+        sendMsg = ["```diff\n"]
 
         for chars in i:
           print (chars)
