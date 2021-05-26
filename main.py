@@ -236,7 +236,7 @@ async def voice_update(ctx: SlashContext, channel = None):
         print("+ " + char)
       
 
-      final = [change[x:x+5] for x in range(0, len(change),5)]
+      final = [change[x:x+8] for x in range(0, len(change),8)]
 
       for i in final:
         print (i)
