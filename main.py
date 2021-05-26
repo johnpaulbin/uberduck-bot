@@ -244,7 +244,7 @@ async def voice_update(ctx: SlashContext, channel = None):
 
         for chars in i:
           print (chars)
-          sendMsg.append("+ "+ char + "\n")
+          sendMsg.append("+ "+ chars + "\n")
 
         sendMsg.append("```")
 
