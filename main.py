@@ -228,10 +228,8 @@ async def voice_update(ctx: SlashContext, channel = None):
 
     else:
       
-
-      store.truncate(0)
       with open("store.txt", "a") as fl:
-        for line in update:
+        for change in update:
           fl.write(line)
 
       for char in change:
@@ -241,11 +239,11 @@ async def voice_update(ctx: SlashContext, channel = None):
       final = [change[x:x+5] for x in range(0, len(change),5)]
 
       for i in final:
-
+        print (i)
         sendMsg = ["```diff\n",]
 
         for chars in i:
-          #print (chars)
+          print (chars)
           sendMsg.append("+ "+ char + "\n")
 
         sendMsg.append("```")
