@@ -323,7 +323,6 @@
 [Public Figures] Billy Mays (by CrazyPlays_HD)
 [BFB] Five (by Fire Chair)
 [Chuck E. Cheese's] Chuck E. Cheese (by Jeremythepeanutsguy)
-[Genshin Impact] Venti (by PizzaDarius25 and skabby)
 [Space Ghost Coast to Coast] Space Ghost (by JacobLenstar)
 [Frozen] Elsa (by adam is cool and stuff)
 [Kid Icarus] Palutena (by JacobLenstar and Haycoat)
@@ -337,7 +336,6 @@
 [Mao Mao: Heroes of Pure Heart] Adorabat (by shoopdahoop22 and EndersVoid)
 [Invincible] Omni-Man (by Kosmikist)
 [Musicians] Dave Gahan (Depeche Mode) (by Majora101)
-[Bully] Jimmy Hopkins (by doop)
 [Conroy Cat] Conroy Cat (by iamitz1)
 [Rappers] Eminem (Freestyle) (by iamitz1)
 [iCarly] Freddie Benson (by BibbyBob)
@@ -350,3 +348,14 @@
 [Sonic's Schoolhouse] Sonic (by JacobLenstar)
 [Zootopia] Nick Wilde
 [Disney] Minnie Mouse (by Perfectpitcher88)
+[UTAU] Mario Fuwa
+[YouTubers] Verbal ASE (by SpongyCake)
+[Tornado Outbreak] Zephyr
+[The Simpsons] Lenny Leonard (by JacobLenstar)
+[Mao Mao: Heroes of Pure Heart] Eugene (by shoopdahoop22)
+[The Peanuts] Lucy Van Pelt (by Jeremythepeanutsguy)
+[Bully] Jimmy Hopkins (by doop)
+[Persona 4] Rise Kujikawa (by Jeremythepeanutsguy)
+[Tornado Outbreak] Nimbus
+[Game Show Host] Pat Sajak (by BibbyBob)
+[The Simpsons] Carl Carlson (by JacobLenstar)

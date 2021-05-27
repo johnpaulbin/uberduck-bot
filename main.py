@@ -205,6 +205,7 @@ async def voice_update(ctx: SlashContext, channel = None):
     with open("update.txt", "a") as fl:
       for name in json_data:
         fl.write(name["display_name"] + "\n")
+      fl.close()
 
 
     change = []
@@ -214,6 +215,7 @@ async def voice_update(ctx: SlashContext, channel = None):
       with open("store.txt", "a") as fl:
         for line in update:
           fl.write(line)
+      fl.close()
     else:
       count = 0
       updatelines = update.read().splitlines()
@@ -223,9 +225,13 @@ async def voice_update(ctx: SlashContext, channel = None):
           print("Different!")
           change.append(line)
           
-          with open("store.txt", "a") as fl:
-            for line in update:
-              fl.write(line)
+
+      store.truncate(0)
+
+      with open("store.txt", "a") as fl:
+        for name in json_data:
+          fl.write(name["display_name"] + "\n")
+      
 
         count += 1
 
