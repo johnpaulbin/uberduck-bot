@@ -262,7 +262,8 @@ async def voice_update(ctx: SlashContext, channel = None):
         embed.set_thumbnail(url="https://uberduck.ai/_next/image?url=%2Fuberduck.jpg&w=384&q=75")
         embed.add_field(name="-", value=''.join(sendMsg), inline=True)
         await channel.send(embed=embed)
-
+      change.clear()
+      sendMsg.clear()
       await ctx.send("Sent the update!")
   else:
     await ctx.send("You arent staff.")
