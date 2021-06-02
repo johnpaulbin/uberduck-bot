@@ -213,8 +213,8 @@ async def voice_update(ctx: SlashContext, channel = None):
     if os.stat("store.txt").st_size == 0:
       print("Empty, storing instead")
       with open("store.txt", "a") as fl:
-        for line in update:
-          fl.write(line)
+        for name in json_data:
+          fl.write(name["display_name"] + "\n")
       fl.close()
     else:
       count = 0
