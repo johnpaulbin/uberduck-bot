@@ -264,6 +264,8 @@ async def voice_update(ctx: SlashContext, channel = None):
         await channel.send(embed=embed)
       change.clear()
       sendMsg.clear()
+      store.close()
+      update.close()
       await ctx.send("Sent the update!")
   else:
     await ctx.send("You arent staff.")

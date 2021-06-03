@@ -374,7 +374,6 @@
 [Helluva Boss] Loona
 [Grand Theft Auto V] Michael De Santa (by doop)
 [The Simpsons] Abraham Simpson (by JacobLenstar)
-[YouTubers] FitMC (by Sierra Ray and Ayyyple)
 [YouTubers] Jacksucksatlife (by Pikachu)
 [Rappers] E-40 (by Youngt913)
 [Top Gear] Richard Hammond (by Toasty)
@@ -387,6 +386,7 @@
 [My Little Pony] Trixie
 [One Stormy Night] Mei (by HoodyP)
 [My Little Pony] Luna
+[My Little Pony] Discord
 [The Amazing World of Gumball] Gumball Watterson (by BibbyBob)
 [Rick and Morty] Rick Sanchez (by iBob012 and Ayyyple)
 [Homestar Runner] Strong Mad (by SidPlays_144p and JacobLenstar)
@@ -434,3 +434,7 @@
 [Rappers] Royce da 5'9" (by justinjohn-03)
 [Powerpuff Girls] Blossom (by Waltman13)
 [Toy Story] Woody (by Waltman13)
+[Ratchet & Clank] Resort Owner (by shoopdahoop22)
+[Musicians] Fred Durst (by Marconan)
+[Politicians] Ronald Reagan (by BibbyBob)
+[SpongeBob SquarePants] Larry the Lobster (by MoarMosspato)
