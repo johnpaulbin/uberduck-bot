@@ -6,6 +6,7 @@ import requests
 import json
 import itertools
 from web import keep_alive
+import time
 
 token = os.environ['discord']
 activity = discord.Activity(name='over you!', type=discord.ActivityType.watching)
@@ -118,15 +119,24 @@ async def on_ready():
 @tasks.loop(seconds=300)
 async def change_status():
   await client.change_presence(activity=discord.Game(next(status)))
-""""
+
+
 @client.event
 async def on_member_join(member):
-    await member.send('👋 **Welcome!**')
-    await member.send(\"\"\"This is uberduck.ai's official discord community, here you can expect to talk about this project, request new voices onto the site, and maybe even learn a few things!
-**FAQ**
-> You can view our most asked questions about the website / project in the #faq channel in our server.
-    \"\"\")
-"""
+    
+    if time.time() - member.created_at.timestamp() < 2592000:
+
+      server = client.get_guild(768215836665446480)
+
+      await server.kick(member)
+    
+    #await member.send('👋 **Welcome!**')
+    #await member.send(\"\"\"This is uberduck.ai's official discord community, here you can #expect to talk about this project, request new voices onto the site, and maybe even learn #a few things!
+#**FAQ**
+#> You can view our most asked questions about the website / project in the #faq channel in #our server.
+#    \"\"\")
+
+
 @client.event
 async def on_message(message):
     mention = f'<@!{client.user.id}>'
@@ -195,7 +205,7 @@ async def voice_update(ctx: SlashContext, channel = None):
   role = discord.utils.get(ctx.guild.roles, name="Staff")
 
   if role in ctx.author.roles:
-
+    
     store = open("store.txt", "r+")
     update = open("update.txt", "r+")
     response = requests.get("https://api.uberduck.ai/voices")
