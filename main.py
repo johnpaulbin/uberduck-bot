@@ -151,33 +151,35 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
 
   sup = discord.utils.get(ctx.guild.roles, name="Supporter")
 
-  if sup in ctx.author.roles:
-    color = 0xFF00E8
-  elif ctx.author in ctx.guild.premium_subscribers:
-    color = 0x00FFF2
-  else:
-    color = 0xfff714
+  if ctx.message.channel == client.get_channel(842056330835656745):
 
-  if role in ctx.author.roles:
-    channel = client.get_channel(842496586361339914)
-    embed=discord.Embed(title=character, color=color)
-    embed.set_author(name="👋 Suggest a voice with /voicesuggest")
-    try:
-      embed.set_thumbnail(url=image)
-    except:
-      ctx.send("You inputted an invalid url (for the image) Using default instead.")
-      embed.set_thumbnail(url="https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596")
-    embed.add_field(name="Source", value=source, inline=True)
-    embed.add_field(name="Voice Clip", value=clip, inline=True)
-    embed.add_field(name="Suggested by:", value=ctx.author.mention, inline=False)
-    embed.set_footer(text="👋 Thumbs up or Thumbs down this message to vote!")
-    msg = await channel.send(embed=embed)
-    await msg.add_reaction("👍")
-    await msg.add_reaction("👎")
-    await msg.add_reaction("<:patreon:843022446675886110>")
-    await ctx.send("Sent voice request!")
-  else:
-    await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
+    if sup in ctx.author.roles:
+      color = 0xFF00E8
+    elif ctx.author in ctx.guild.premium_subscribers:
+      color = 0x00FFF2
+    else:
+      color = 0xfff714
+
+    if role in ctx.author.roles:
+      channel = client.get_channel(842496586361339914)
+      embed=discord.Embed(title=character, color=color)
+      embed.set_author(name="👋 Suggest a voice with /voicesuggest")
+      try:
+        embed.set_thumbnail(url=image)
+      except:
+        await ctx.send("You inputted an invalid url (for the image) Using default instead.")
+        embed.set_thumbnail(url="https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596")
+      embed.add_field(name="Source", value=source, inline=True)
+      embed.add_field(name="Voice Clip", value=clip, inline=True)
+      embed.add_field(name="Suggested by:", value=ctx.author.mention, inline=False)
+      embed.set_footer(text="👋 Thumbs up or Thumbs down this message to vote!")
+      msg = await channel.send(embed=embed)
+      await msg.add_reaction("👍")
+      await msg.add_reaction("👎")
+      await msg.add_reaction("<:patreon:843022446675886110>")
+      await ctx.send("Sent voice request!")
+    else:
+      await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
 
 @slash.slash(name="dataset_request", description="Request that your dataset be trained.", options=options2, guild_ids = [768215836665446480])
 async def dataset_request(ctx: SlashContext, character = None, url = None, image = "https://media.discordapp.net/attachments/842511714406629376/842850806922870804/Titelloses_700_20210514205956.png?width=661&height=596"):
