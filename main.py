@@ -151,7 +151,7 @@ async def voicesuggest(ctx: SlashContext, character = None, source = None, image
 
   sup = discord.utils.get(ctx.guild.roles, name="Supporter")
 
-  if ctx.message.channel == client.get_channel(842056330835656745):
+  if ctx.channel == client.get_channel(842056330835656745):
 
     if sup in ctx.author.roles:
       color = 0xFF00E8
