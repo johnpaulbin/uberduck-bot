@@ -381,36 +381,39 @@ async def on_raw_reaction_add(payload):
 
       embed_dict = message.embeds[0]
 
-      for i, item in enumerate(embed_dict.fields):
+      role = discord.utils.get(channel.guild.roles, name="Contributors")
 
-        if i == 2:
-          print(item)
-          if user.mention == item.value:
+      if role in user.roles:
+
+        for i, item in enumerate(embed_dict.fields):
+
+          if i == 2:
+            print(item)
+            if user.mention == item.value:
             
             #await user.send("You have stopped work on training.")
-            embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value="No one yet.")
+              embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value="No one yet.")
 
-            embed_dict.color = 0x808080
+              embed_dict.color = 0x808080
 
-            await message.edit(embed=embed_dict)
-            await message.remove_reaction(payload.emoji, user)
+              await message.edit(embed=embed_dict)
+              await message.remove_reaction(payload.emoji, user)
 
-            break
+              break
 
 
-          else:
+            else:
 
-            embed_dict.color = 0x00FF00
+              embed_dict.color = 0x00FF00
 
-            embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value=user.mention)
+              embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value=user.mention)
 
             #await user.send("You have chosen that you are training the dataset! If this is a mistake, uncheck the checkmark!")
 
-            await message.edit(embed=embed_dict)
-            await message.remove_reaction(payload.emoji, user)
+              await message.edit(embed=embed_dict)
+              await message.remove_reaction(payload.emoji, user)
 
-            break
-
+              break
 
 keep_alive()
 
