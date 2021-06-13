@@ -212,7 +212,8 @@ async def voice_update(ctx: SlashContext, channel = None):
     update = open("update.txt", "r+")
     response = requests.get("https://api.uberduck.ai/voices")
     json_data = json.loads(response.text)
-    update.truncate(0)
+
+    os.remove("update.txt")
 
     with open("update.txt", "a") as fl:
       for name in json_data:
@@ -238,7 +239,7 @@ async def voice_update(ctx: SlashContext, channel = None):
           change.append(line)
           
 
-      store.truncate(0)
+      os.remove("store.txt")
 
       with open("store.txt", "a") as fl:
         for name in json_data:
