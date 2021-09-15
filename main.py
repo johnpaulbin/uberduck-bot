@@ -2,10 +2,7 @@ import os
 import discord
 from discord.ext import commands, tasks
 from discord_slash import SlashCommand, SlashCommandOptionType, SlashContext
-import requests
-import json
 import itertools
-from web import keep_alive
 import time
 
 token = os.environ['discord']
@@ -124,12 +121,16 @@ async def change_status():
 @client.event
 async def on_member_join(member):
     
-    if time.time() - member.created_at.timestamp() < 1209600:
+    if time.time() - member.created_at.timestamp() < 1209600: 
+      # 14 day account age limit
 
       server = client.get_guild(768215836665446480)
 
       await server.kick(member)
     
+    """
+    the welcome message is going to be disabled due to discord's broken abuse system
+    """
     #await member.send('👋 **Welcome!**')
     #await member.send(\"\"\"This is uberduck.ai's official discord community, here you can #expect to talk about this project, request new voices onto the site, and maybe even learn #a few things!
 #**FAQ**
@@ -202,6 +203,9 @@ async def dataset_request(ctx: SlashContext, character = None, url = None, image
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
 
 """
+
+this update needs to be improved via module and not by hand
+
 @slash.slash(name="voice_update", description="Staff only! It makes an embed onto the channel.", options=voiceOptions, guild_ids = [768215836665446480])
 async def voice_update(ctx: SlashContext, channel = None):
 
@@ -284,11 +288,6 @@ async def voice_update(ctx: SlashContext, channel = None):
   else:
     await ctx.send("You arent staff.")
 """
-
-@slash.slash(name="why_isnt_the_site_working", description="run this command to find out", guild_ids = [768215836665446480])
-async def why_isnt_the_site_working(ctx: SlashContext):
-  await ctx.send(ctx.author.mention + " Look near the bottom of: <#841422801965416538>")
-
 
 @slash.slash(name="status", description="Moderators only!", guild_ids = [768215836665446480], options=statusOptions)
 async def changeStatus(ctx: SlashContext, api = None, website = None):
@@ -395,8 +394,6 @@ async def on_raw_reaction_add(payload):
           if i == 2:
             print(item)
             if user.mention == item.value:
-            
-            #await user.send("You have stopped work on training.")
               embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value="No one yet.")
 
               embed_dict.color = 0x808080
@@ -406,21 +403,20 @@ async def on_raw_reaction_add(payload):
 
               break
 
-
             else:
 
               embed_dict.color = 0x00FF00
 
               embed_dict.set_field_at(index=2, name=item.name, inline=item.inline, value=user.mention)
 
-            #await user.send("You have chosen that you are training the dataset! If this is a mistake, uncheck the checkmark!")
+              await user.send("You have chosen that you are training the dataset-- if this is a mistake, re-react the checkmark.")
 
               await message.edit(embed=embed_dict)
               await message.remove_reaction(payload.emoji, user)
 
               break
 
-keep_alive()
+#keep_alive() depracated
 
 
 client.run(token)
