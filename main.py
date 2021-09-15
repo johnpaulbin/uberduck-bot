@@ -124,7 +124,7 @@ async def change_status():
 @client.event
 async def on_member_join(member):
     
-    if time.time() - member.created_at.timestamp() < 2592000:
+    if time.time() - member.created_at.timestamp() < 1209600:
 
       server = client.get_guild(768215836665446480)
 
@@ -201,6 +201,7 @@ async def dataset_request(ctx: SlashContext, character = None, url = None, image
   else:
     await ctx.send("You are missing the Agreed role! Do so in <#842148452464853002>")
 
+"""
 @slash.slash(name="voice_update", description="Staff only! It makes an embed onto the channel.", options=voiceOptions, guild_ids = [768215836665446480])
 async def voice_update(ctx: SlashContext, channel = None):
 
@@ -282,6 +283,7 @@ async def voice_update(ctx: SlashContext, channel = None):
       await ctx.send("Sent the update!")
   else:
     await ctx.send("You arent staff.")
+"""
 
 @slash.slash(name="why_isnt_the_site_working", description="run this command to find out", guild_ids = [768215836665446480])
 async def why_isnt_the_site_working(ctx: SlashContext):
